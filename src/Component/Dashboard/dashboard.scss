@@ -7,15 +7,7 @@
 // $purple: #8F40B3;
 // $night-blue: #004A7C; //chnaged
 // $night-blue-dark: #233342;
-
-
-$whitesmoke : #FAFAFA;
-$lightskyblue : #E8F1F5;
-$blue : #005691;
-$blue-dark: #004A7C;
-$black : #000000;
-$white : #ffffff;
-
+@import '/public/assets/scss/variables';
 
 // mixins
 @mixin center() {
@@ -53,10 +45,12 @@ $white : #ffffff;
 
 aside {
     padding: 5px;
-    background-color: $blue;
+    background-color: $lightskyblue;
     display: inline-block;
     height: 100vh;
     width: 280px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.141);
+    transition: all $transition ease;
 
     header {
         padding: 10px 15px;
@@ -73,13 +67,13 @@ aside {
 
         p {
             font-size: 13px;
-            color: $white;
+            color: $blue;
             text-transform: uppercase;
             margin: 0;
         }
         div{
             i{
-                color: $white;
+                color: $blue;
                 font-size: 20px;
                 cursor: pointer;
             }
@@ -96,7 +90,7 @@ aside {
     font-size: 14px;
 
     a {
-        color: $white;
+        color: $blue;
         display: block;
         padding: 15px 25px;
         text-decoration: none;
@@ -104,7 +98,7 @@ aside {
     }
 
     i.fa {
-        color: $white;
+        color: $blue;
         font-size: 20px;
         margin-right: 20px;
     }
@@ -113,24 +107,21 @@ aside {
         border-radius: 4px !important;
         margin-bottom: 7px;
         overflow: hidden;
+        a{
+            transition: all $transition linear;
+        }
         &.active,
         &:hover {
             a {
-                background-color: $blue-dark;
-                color: white;
+                background-color: $blue;
+                color: $whitesmoke;
             }
 
-            i {
-                color: $white;
+            i{
+                color: $whitesmoke;
             }
         }
     }
-}
-
-main {
-    height: 100vh;
-    overflow-y: scroll;
-    width: 100%;
 }
 
 
@@ -151,5 +142,57 @@ main {
                 }
             }
         }
+    }
+}
+
+.content-area{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+
+    .dash-navbar{
+        background-color: $blue;
+        padding: 10px 20px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        .search-bar{
+
+            input[type=search]{
+                border: none;
+                padding: 6px 10px;
+                width: 40%;
+                border-radius: 4px !important;
+    
+                &:focus{
+                    outline: none;
+                    border: 1px solid $blue-dark !important;
+                }
+            }
+
+            .user-details{
+                .user-img{
+                    width: 40px;
+                    aspect-ratio: 1;
+                    border-radius: 50%;
+                    outline: 1.5px solid $white;
+                    outline-offset: 3px;
+                }
+                .user-name{
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    main {
+        padding: 20px;
+        padding-top: 80px;
+        height: 100%;
+        width: 100%;
+        overflow-y: scroll;
     }
 }

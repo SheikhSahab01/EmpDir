@@ -20,7 +20,7 @@ const Dashboard = () => {
   };
   return (
     <>
-      <div className="container-xxl d-flex p-0">
+      <div className="container-xxl d-flex p-0 w-100">
         <aside className={dashHide}>
           <header className="d-flex align-items-center">
             <img src="assets/images/logo.svg" />
@@ -48,7 +48,48 @@ const Dashboard = () => {
             </ul>
           </nav>
         </aside>
-        <main></main>
+        <div className="content-area">
+        <nav className="dash-navbar">
+          <div className="search-bar d-flex justify-content-between">
+            <input type="search" name="" id="" placeholder="Search Employee Name"/>
+            <div className="user-details d-flex align-items-center">
+              <img src="https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/9f91e30721604c0f818e2af4530b7cf7.jpg?1692777600000" alt="" className="user-img"/>
+              <span className="user-name ms-3">Arjit Raturi</span>
+            </div>
+          </div>
+        </nav>
+        <main>
+          <h1>Arjit</h1>
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+          <h1>Arjit</h1>
+
+        </main>
+        </div>
       </div>
     </>
   );

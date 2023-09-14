@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import "./dashboard.scss";
+import Card from "../Cards/Card"
+import data from '../../Backend/Data';
 
 const Dashboard = () => {
+  var empData = data.employees;
   const [dashShow, SetdashShow] = useState(false);
   const [dashHide, SetdashHide] = useState("");
   const [open, Setopen] = useState("xmark");
+  const [searchVal, SetsearchVal] = useState('');
 
   const handleDashToggle = () => {
     if (!dashShow) {
@@ -18,9 +22,13 @@ const Dashboard = () => {
       Setopen("xmark");
     }
   };
+
+  const handlesearchvalue = (e)=>{
+    SetsearchVal(e.target.value);
+  }
   return (
     <>
-      <div className="container-xxl d-flex p-0 w-100">
+      <div className="d-flex p-0 w-100">
         <aside className={dashHide}>
           <header className="d-flex align-items-center">
             <img src="assets/images/logo.svg" />
@@ -34,13 +42,13 @@ const Dashboard = () => {
           </header>
           <nav className="side-navigation">
             <ul>
-              <li>
+              <li className="active">
                 <a href="#">
                   <i className="fa fa-dashboard"></i>
                   <span>Dashboard</span>
                 </a>
               </li>
-              <li className="active">
+              <li>
                 <a href="#">
                   <i className="fa fa-ship"></i> <span>Create Employee</span>
                 </a>
@@ -51,7 +59,7 @@ const Dashboard = () => {
         <div className="content-area">
         <nav className="dash-navbar">
           <div className="search-bar d-flex justify-content-between">
-            <input type="search" name="" id="" placeholder="Search Employee Name"/>
+            <input type="search" name="" id="" placeholder="Search Employee Name" value={searchVal} onChange={handlesearchvalue}/>
             <div className="user-details d-flex align-items-center">
               <img src="https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/9f91e30721604c0f818e2af4530b7cf7.jpg?1692777600000" alt="" className="user-img"/>
               <span className="user-name ms-3">Arjit Raturi</span>
@@ -59,34 +67,31 @@ const Dashboard = () => {
           </div>
         </nav>
         <main>
-          <h1>Arjit</h1>
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
-
-          <h1>Arjit</h1>
+        <div className="card-wrapper overflow-hidden">
+          <div className="row">
+            {  searchVal !== '' ?
+                empData.forEach(item =>{
+                  if(item.name.toLowerCase().indexOf(searchVal.toLowerCase()) != -1){    
+                    console.log(item);
+                    return(
+                      <div className="col-lg-4 p-0 d-flex justify-content-center">
+                      <Card empsdata = {item}/>
+                      </div>)
+                  }
+                })
+                :
+                  empData.map((emp, i)=> { i++;
+                    console.log("emp", emp);
+                    return(
+                      <div className="col-lg-4 p-0 d-flex justify-content-center">
+                      <Card empsdata = {emp}/>
+                      </div>)
+                    }
+                  )
+                }
+          </div>
+        </div>
+          
 
         </main>
         </div>

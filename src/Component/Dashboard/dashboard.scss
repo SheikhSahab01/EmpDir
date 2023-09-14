@@ -1,12 +1,3 @@
-// $primary: #005691; //changed
-// $body: #FAFAFA; //changed
-// $grey: #92A1A2;
-// $grey-light: #ECF0F1;
-// $blue: #59A4E8;
-// $orange: #E54239;
-// $purple: #8F40B3;
-// $night-blue: #004A7C; //chnaged
-// $night-blue-dark: #233342;
 @import '/public/assets/scss/variables';
 
 // mixins
@@ -158,6 +149,7 @@ aside {
         top: 0;
         left: 0;
         right: 0;
+        z-index: 15;
 
         .search-bar{
 
@@ -175,7 +167,7 @@ aside {
 
             .user-details{
                 .user-img{
-                    width: 40px;
+                    width: 35px;
                     aspect-ratio: 1;
                     border-radius: 50%;
                     outline: 1.5px solid $white;
@@ -189,10 +181,19 @@ aside {
     }
 
     main {
-        padding: 20px;
-        padding-top: 80px;
+        // padding: 20px;
+        padding-top: 60px;
         height: 100%;
         width: 100%;
         overflow-y: scroll;
     }
+}
+
+.card-wrapper{
+    padding: 50px 4px 20px 15px;
+	// display: flex;
+	// align-items: center;
+	// justify-content: space-evenly;
+	flex-wrap: wrap;
+	background: whitesmoke;
 }

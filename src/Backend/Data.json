@@ -30,13 +30,63 @@
             "img": "https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/dac437b804ee428590d2345834b0c9de.jpg?1693900800000"
         },
         {
+            "id": 1,
+            "name": "Mohd Asif Sheikh",
+            "role": "Design Intern",
+            "department": "User Experience",
+            "location": "Sikar",
+            "email": "asifsheikhsheikh786@gmail.com",
+            "mobile": "7014662895",
+            "img": "https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/80cb1c1aaa624b059298116f1beffaf3.jpg?1692777600000"
+        },
+        {
+            "id": 2,
+            "name": "Arjit Raturi",
+            "role": "Design Intern",
+            "department": "User Experience",
+            "location": "Haryana",
+            "email": "arjit.raturi.dev@gmail.com",
+            "mobile": "7014662895",
+            "img": "https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/9f91e30721604c0f818e2af4530b7cf7.jpg?1692777600000"
+        },
+        {
             "id": 3,
-            "name": "zzzzzzzzzzz",
-            "role": "zzzzzzzzzzz",
-            "department": "zzzzzzzzzzzzzzzzzz",
-            "location": "xxxxxxxxxxx",
-            "email": "xxxxxxxxxxxxxxxxxxxx",
-            "mobile": "xxxyyyyyyy",
+            "name": "Grusha Shah",
+            "role": "Design Intern",
+            "department": "User Experience",
+            "location": "Pune",
+            "email": "grushashah@gmail.com",
+            "mobile": "7014662895",
+            "img": "https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/dac437b804ee428590d2345834b0c9de.jpg?1693900800000"
+        },
+        {
+            "id": 1,
+            "name": "Mohd Asif Sheikh",
+            "role": "Design Intern",
+            "department": "Bridge",
+            "location": "Sikar",
+            "email": "asifsheikhsheikh786@gmail.com",
+            "mobile": "7014662895",
+            "img": "https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/80cb1c1aaa624b059298116f1beffaf3.jpg?1692777600000"
+        },
+        {
+            "id": 2,
+            "name": "Arjit Raturi",
+            "role": "Manager",
+            "department": "Visual Design",
+            "location": "Haryana",
+            "email": "arjit.raturi.dev@gmail.com",
+            "mobile": "7014662895",
+            "img": "https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/9f91e30721604c0f818e2af4530b7cf7.jpg?1692777600000"
+        },
+        {
+            "id": 3,
+            "name": "Grusha Shah",
+            "role": "Associate Ui",
+            "department": "V2",
+            "location": "Pune",
+            "email": "grushashah@gmail.com",
+            "mobile": "7014662895",
             "img": "https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/dac437b804ee428590d2345834b0c9de.jpg?1693900800000"
         }
         

@@ -2,7 +2,6 @@ import React from "react";
 import "./card.scss";
 
 function Card(Props) { 
-    console.log(Props.empsdata);
     return (
       <div id={"caidid" + Props.empsdata.id} className="custom-card">
           <div className="image-wrappers">

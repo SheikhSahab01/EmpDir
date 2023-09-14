@@ -26,6 +26,17 @@ const Dashboard = () => {
   const handlesearchvalue = (e)=>{
     SetsearchVal(e.target.value);
   }
+
+  const searchResults = searchVal != ''
+  ? empData.filter(item => {
+    return item.name.toLowerCase().includes(searchVal.toLowerCase())
+      || item.role.toLowerCase().includes(searchVal.toLowerCase())
+      || item.department.toLowerCase().includes(searchVal.toLowerCase())
+      || item.mobile.toLowerCase().includes(searchVal.toLowerCase())
+      || item.email.toLowerCase().includes(searchVal.toLowerCase());
+  })
+  : empData;
+
   return (
     <>
       <div className="d-flex p-0 w-100">
@@ -69,33 +80,13 @@ const Dashboard = () => {
         <main>
         <div className="card-wrapper overflow-hidden">
           <div className="row">
-            {  searchVal !== '' ?
-                empData.map(item =>{
-                  if(item.name.toLowerCase().indexOf(searchVal.toLowerCase()) != -1 
-                     ||
-                     item.role.toLowerCase().indexOf(searchVal.toLowerCase()) != -1
-                     ||
-                     item.department.toLowerCase().indexOf(searchVal.toLowerCase()) != -1){    
-                      return(
-                        <div className="col-lg-4 p-0 d-flex justify-content-center">
-                      <Card empsdata = {item}/>
-                      </div>
-                      )
-                  }
-                })
-                :
-                  empData.map((emp, i)=> { i++;
-                    return(
-                      <div className="col-lg-4 p-0 d-flex justify-content-center">
-                      <Card empsdata = {emp}/>
-                      </div>)
-                    }
-                  )
-                }
+            {searchResults.map((item, i) => (
+              <div className="col-lg-4 p-0 d-flex justify-content-center" key={i}>
+                <Card empsdata={item} />
+              </div>
+            ))}
           </div>
         </div>
-          
-
         </main>
         </div>
       </div>

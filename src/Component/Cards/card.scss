@@ -11,7 +11,7 @@
 	transform: perspective(500px);
 	transition: all 0.8s ease;
 	&:hover {
-		transform: translate3d(0, -3px, 0px);
+		transform: translate3d(0, -15px, 0px);
 		box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
 		.image-wrappers {
 			img {

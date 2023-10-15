@@ -4,6 +4,7 @@ import "./dashboard.scss";
 import Card from "../Cards/Card"
 import data from '../../Backend/Data';
 import Createempform from "../Createempform/createempform";
+import Profile from "../Profile/Profile";
 
 const Dashboard = () => {
   var empData = data.employees;
@@ -61,6 +62,11 @@ const Dashboard = () => {
                     <a href="#"> <i className="fa fa-ship"></i><span>Create Employee</span></a>
                   </li>
                 </Tab>
+                <Tab>
+                  <li>
+                    <a href="#"><i className="fa fa-dashboard"></i><span>Profile</span></a>
+                  </li>
+                </Tab>
               </TabList>
             </nav>
           </aside>
@@ -89,6 +95,11 @@ const Dashboard = () => {
               <TabPanel>
                 <div className="tabs-content-wrapper overflow-hidden">
                   <Createempform></Createempform>
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className="tabs-content-wrapper overflow-hidden">
+                  <Profile></Profile>
                 </div>
               </TabPanel>
             </main>

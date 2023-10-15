@@ -1,0 +1,97 @@
+@import '/public/assets/scss/variables';
+
+.profile-wrapper {
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.141);
+
+    .profile-bg {
+        width: 100%;
+        height: 150px;
+        background-color: $blue;
+        flex-direction: column;
+        justify-content: center;
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: $whitesmoke;
+            letter-spacing: 2px;
+        }
+
+        span{
+            color: $whitesmoke;
+        }
+    }
+
+    .profile {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .profile-img {
+            width: 150px;
+            height: 100px;
+            position: relative;
+
+            img {
+                border: 5px solid $white;
+                border-radius: 50%;
+                position: absolute;
+                top: -70px;
+                box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.141);
+            }
+        }
+
+        .profile-detail {
+            width: calc(100% - 150px);
+
+            .social-profile {
+                flex-direction: column;
+                a {
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $white;
+                    border: 1px solid $blue;
+                    border-radius: 50%;
+                    text-decoration: none;
+
+                    i {
+                        color: $blue;
+                    }
+
+                    &:hover {
+                        border-color: $blue-dark;
+
+                        i {
+                            color: $blue-dark;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .other-profile-details {
+        .p-card{
+            padding: 0.2rem;
+            display: flex;
+            flex-direction: column;
+            padding-left: 30px;
+
+            span{
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                font-weight: 400;
+                color: $grey;
+            }
+
+            p{
+                color: $black;
+                margin-bottom: 0;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}

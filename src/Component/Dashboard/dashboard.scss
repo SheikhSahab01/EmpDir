@@ -56,7 +56,7 @@
 
 aside {
     padding: 5px;
-    background-color: $lightskyblue;
+    background-color: $whitesmoke;
     display: inline-block;
     height: 100vh;
     width: 280px;
@@ -177,14 +177,10 @@ aside {
         .search-bar{
 
             input[type=search]{
-                border: none;
-                padding: 6px 10px;
                 width: 40%;
-                border-radius: 4px !important;
-    
+                
                 &:focus{
-                    outline: none;
-                    border: 1px solid $blue-dark !important;
+                    border:  1.5px solid $lightskyblue !important;
                 }
             }
 
@@ -212,9 +208,9 @@ aside {
 }
 
 .tabs-content-wrapper{
-    padding: 50px 4px 20px 15px;
+    padding: 20px 15px 20px 15px;
 	flex-wrap: wrap;
-	background: whitesmoke;
+	// background: whitesmoke;
     min-height: calc(100vh - 55px);
     overflow-y: auto;   
 }

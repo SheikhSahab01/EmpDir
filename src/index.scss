@@ -1,12 +1,13 @@
 @import '/public/assets/scss/variables';
 
-*{
-  margin: 0;padding: 0;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 
-ul{
+ul {
   list-style-type: none;
   padding: 0 !important;
 }
@@ -17,7 +18,7 @@ ul{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: whitesmoke;
+  background: white;
 }
 
 /* Handle */
@@ -28,4 +29,113 @@ ul{
 
 ::-webkit-scrollbar-thumb:hover {
   background: #9aabb3;
+}
+
+input,
+textarea,
+select {
+  padding: 0.5rem 1rem !important;
+  border: 1.5px solid #dee2e6 !important;
+  border-radius: 6px !important;
+  outline: none !important;
+  font-size: 0.8rem !important;
+
+  &::placeholder {
+    color: #9aabb3 !important;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+select {
+  color: #9aabb3 !important;
+  position: relative !important;
+  padding-bottom: 8px !important;
+
+  option {
+    padding: 60px 100px !important;
+    color: $black !important;
+    border-radius: 6px !important;
+    max-height: 400px !important;
+    overflow: auto;
+
+    &:hover {
+      background-color: $blue !important;
+    }
+  }
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border: 1.5px solid $blue !important;
+  box-shadow: none !important;
+  outline: none !important;
+  // box-shadow: 1px 1px 1px 1px $blue;
+}
+
+.form-check-input:checked {
+  background-color: $blue !important;
+  border-color: $white !important;
+}
+
+
+.btn {
+  padding: 0.5rem 1rem !important;
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  min-width: 100px !important;
+  border: none !important;
+
+  &.btn-primary {
+    background-color: $blue !important;
+
+    &:hover {
+      background-color: $blue-dark !important;
+    }
+  }
+
+  &.btn-outline-primary {
+    color: $blue !important;
+    background-color: transparent !important;
+    border: 1px solid $blue !important;
+
+    &:hover {
+      color: $white !important;
+      background-color: $blue-dark !important;
+    }
+  }
+
+}
+
+.error-text{
+  font-size: 0.8rem !important;
+  font-weight: 300 !important;
+  color: $danger !important;
+}
+
+.badge{
+  min-width: 50px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1.1px;
+  color: $white;
+
+  &.badge-primary{
+    background-color: $blue !important;
+  }
+  &.badge-danger{
+    background-color: $danger;
+  }
+  &.badge-success{
+    background-color: $success;
+  }
+  &.badge-secondary{
+    background-color: $lightskyblue;
+    color: $blue-dark;
+  }
+
 }

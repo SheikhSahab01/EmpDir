@@ -12,6 +12,7 @@ const Createempform = () => {
     mobno: "",
   };
 
+
   const [formData, setFormData] = useState(initialFormData);
   const [formErrors, setFormErrors] = useState({});
 
@@ -27,7 +28,7 @@ const Createempform = () => {
     const errors = {};
     for (const field in formData) {
       if (!formData[field]) {
-        errors[field] = `Please Enter ${field}`;
+        errors[field] = `*Please Enter ${field}`;
       }
     }
     setFormErrors(errors);
@@ -47,9 +48,11 @@ const Createempform = () => {
   };
 
   return (
+    <>
+    <h3 className="ps-4 mb-4">Add New Employee</h3>
     <form onSubmit={handleFormSubmit}>
-      <div className="mb-3 d-flex gap-4">
-        <div>
+      <div className="w-100 mb-3 d-flex gap-4 px-4 py-2">
+        <div className="col-lg-6">
           <input
             type="text"
             className="form-control"
@@ -58,9 +61,9 @@ const Createempform = () => {
             value={formData.fname}
             onChange={handleChange}
           />
-          <span>{formErrors.fname}</span>
+          <span className="error-text">{formErrors.fname}</span>
         </div>
-        <div>
+        <div className="col-lg-6">
           <input
             type="text"
             className="form-control"
@@ -69,10 +72,10 @@ const Createempform = () => {
             value={formData.lname}
             onChange={handleChange}
           />
-          <span>{formErrors.lname}</span>
+          <span className="error-text">{formErrors.lname}</span>
         </div>
       </div>
-      <div className="mb-3">
+      <div className="w-100 mb-3 ps-4 py-2">
         <input
           type="email"
           className="form-control"
@@ -81,10 +84,10 @@ const Createempform = () => {
           value={formData.email}
           onChange={handleChange}
         />
-        <span>{formErrors.email}</span>
+        <span className="error-text">{formErrors.email}</span>
       </div>
-      <div className="mb-3 d-flex gap-4">
-        <div>
+      <div className="mb-3 d-flex gap-4 px-4 py-2">
+        <div className="col-lg-6">
           <input
             type="text"
             className="form-control"
@@ -93,9 +96,9 @@ const Createempform = () => {
             value={formData.dept}
             onChange={handleChange}
           />
-          <span>{formErrors.dept}</span>
+          <span className="error-text">{formErrors.dept}</span>
         </div>
-        <div>
+        <div className="col-lg-6">
           <input
             type="text"
             className="form-control"
@@ -104,11 +107,11 @@ const Createempform = () => {
             value={formData.role}
             onChange={handleChange}
           />
-          <span>{formErrors.role}</span>
+          <span className="error-text">{formErrors.role}</span>
         </div>
       </div>
-      <div className="mb-3 d-flex gap-4">
-        <div>
+      <div className="mb-3 d-flex gap-4 px-4 py-2">
+        <div className="col-lg-6">
           <input
             type="text"
             className="form-control"
@@ -117,9 +120,9 @@ const Createempform = () => {
             value={formData.location}
             onChange={handleChange}
           />
-          <span>{formErrors.location}</span>
+          <span className="error-text">{formErrors.location}</span>
         </div>
-        <div>
+        <div className="col-lg-6">
           <input
             type="number"
             className="form-control"
@@ -128,14 +131,16 @@ const Createempform = () => {
             value={formData.mobno}
             onChange={handleChange}
           />
-          <span>{formErrors.mobno}</span>
+          <span className="error-text">{formErrors.mobno}</span>
         </div>
       </div>
-
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
+      <div className="d-flex justify-content-end py-2">
+        <button type="submit" className="btn btn-primary float-right" data-toggle="tooltip" data-placement="top" title="hello">
+          Submit
+        </button>
+      </div>
     </form>
+    </>
   );
 };
 

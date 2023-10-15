@@ -1,13 +1,33 @@
-import React, { useState } from "react";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import React, { useState,useEffect } from "react";
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "./dashboard.scss";
 import Card from "../Cards/Card"
-import data from '../../Backend/Data';
+// import data from '../../Backend/Data';
 import Createempform from "../Createempform/createempform";
 import Profile from "../Profile/Profile";
+import { Routes, Route, Link } from "react-router-dom";
+
 
 const Dashboard = () => {
-  var empData = data.employees;
+  // var empData = data.employees;
+  const [empData, setEmpData] = useState([]);
+  const loadData = async ()=>{
+    let response = await fetch("http://localhost:5000/api/EmpData",{
+      method:"POST",
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    });
+
+    response =await response.json();
+    
+    setEmpData(response[0]);
+  }
+
+  useEffect(()=>{
+    loadData()
+  },[]);
+
   const [dashShow, SetdashShow] = useState(false);
   const [dashHide, SetdashHide] = useState("");
   const [open, Setopen] = useState("xmark");
@@ -41,7 +61,6 @@ const Dashboard = () => {
 
   return (
     <>
-      <Tabs class="main-tabs">
         <div className="d-flex p-0 w-100">
           <aside className={dashHide}>
             <header className="d-flex align-items-center">
@@ -51,23 +70,15 @@ const Dashboard = () => {
               </div>
             </header>
             <nav className="side-navigation">
-              <TabList>
-                <Tab>
                   <li>
-                    <a href="#"><i className="fa fa-dashboard"></i><span>Dashboard</span></a>
+                    <Link to="/dashboard/"><i className="fa fa-dashboard"></i><span>Dashboard</span></Link>
                   </li>
-                </Tab>
-                <Tab>
                   <li>
-                    <a href="#"> <i className="fa fa-ship"></i><span>Create Employee</span></a>
+                    <Link to="/dashboard/create_employee"> <i className="fa fa-ship"></i><span>Create Employee</span></Link>
                   </li>
-                </Tab>
-                <Tab>
                   <li>
-                    <a href="#"><i className="fa fa-dashboard"></i><span>Profile</span></a>
+                    <Link to="/dashboard/profile"><i className="fa fa-dashboard"></i><span>Profile</span></Link>
                   </li>
-                </Tab>
-              </TabList>
             </nav>
           </aside>
           <div className="content-area">
@@ -81,31 +92,24 @@ const Dashboard = () => {
               </div>
             </nav>
             <main>
-              <TabPanel>
-                <div className="tabs-content-wrapper overflow-hidden">
-                  <div className="row">
-                    {searchResults.map((item, i) => (
-                      <div className="col-lg-4 p-0 d-flex justify-content-center" key={i}>
-                        <Card empsdata={item} />
+            <div className="tabs-content-wrapper overflow-hidden">
+                <Routes>
+                  <Route path="/" element={
+                      <div className="row">
+                        {searchResults.map((item, i) => (
+                          <div className="col-lg-4 p-0 d-flex justify-content-center" key={i}>
+                            <Card empsdata={item} />
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <div className="tabs-content-wrapper overflow-hidden">
-                  <Createempform></Createempform>
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <div className="tabs-content-wrapper overflow-hidden">
-                  <Profile></Profile>
-                </div>
-              </TabPanel>
+                  }/>
+                  <Route path="/create_employee" element={<Createempform />} />
+                  <Route path="/profile" element={<Profile />} />
+                </Routes>
+              </div>  
             </main>
           </div>
         </div>
-      </Tabs>
     </>
   );
 };

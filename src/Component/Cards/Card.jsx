@@ -3,7 +3,7 @@ import "./card.scss";
 
 function Card(Props) { 
     return (
-      <div id={"caidid" + Props.empsdata.id} className="custom-card">
+      <div id={"caidid" + Props.empsdata.emp_id} className="custom-card">
           <div className="image-wrappers">
               <img className="img-fluid" src={Props.empsdata.img}
                   alt="avtar_image" />

@@ -10,8 +10,30 @@ const Createempform = () => {
     role: "",
     location: "",
     mobno: "",
+    img: "",
+    id: ""
   };
-
+  
+  const AddEmployee = async()=>{
+    console.log(formData.dept);
+    let response = await fetch("http://localhost:5000/api/createemp",{
+      method: 'POST',
+      headers: {
+      "Content-Type": "application/json",
+      },
+      body:JSON.stringify({
+          emp_id: formData.id,
+          name: `${formData.fname} ${formData.lname}`,
+          email: formData.email,
+          department: formData.dept,
+          role: formData.role,
+          location: formData.location,
+          mobile: formData.mobno,
+          img: formData.img,
+      })
+     });
+     console.log(response)
+  }
 
   const [formData, setFormData] = useState(initialFormData);
   const [formErrors, setFormErrors] = useState({});
@@ -39,9 +61,7 @@ const Createempform = () => {
     e.preventDefault();
     if (validateForm()) {
         
-      alert(
-        `${formData.fname} ${formData.lname} ${formData.email} ${formData.dept} ${formData.role} ${formData.location} ${formData.mobno}`
-      );
+      AddEmployee();
       setFormData(initialFormData);
       setFormErrors({});
     }
@@ -75,7 +95,8 @@ const Createempform = () => {
           <span className="error-text">{formErrors.lname}</span>
         </div>
       </div>
-      <div className="w-100 mb-3 ps-4 py-2">
+      <div className="w-100 mb-3 d-flex gap-4 px-4 py-2">
+        <div className="col-lg-6">
         <input
           type="email"
           className="form-control"
@@ -85,6 +106,18 @@ const Createempform = () => {
           onChange={handleChange}
         />
         <span className="error-text">{formErrors.email}</span>
+      </div>
+        <div className="col-lg-6">
+        <input
+          type="text"
+          className="form-control"
+          name="img"
+          placeholder="Image Url"
+          value={formData.img}
+          onChange={handleChange}
+        />
+        <span className="error-text">{formErrors.email}</span>
+        </div>
       </div>
       <div className="mb-3 d-flex gap-4 px-4 py-2">
         <div className="col-lg-6">
@@ -133,6 +166,17 @@ const Createempform = () => {
           />
           <span className="error-text">{formErrors.mobno}</span>
         </div>
+      </div>
+      <div className="w-100 mb-3 ps-4 py-2">
+        <input
+          type="text"
+          className="form-control"
+          name="id"
+          placeholder="Employee Id"
+          value={formData.id}
+          onChange={handleChange}
+        />
+        <span className="error-text">{formErrors.email}</span>
       </div>
       <div className="d-flex justify-content-end py-2">
         <button type="submit" className="btn btn-primary float-right" data-toggle="tooltip" data-placement="top" title="hello">

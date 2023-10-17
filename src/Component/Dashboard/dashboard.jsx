@@ -54,7 +54,6 @@ const Dashboard = () => {
     return item.name.toLowerCase().includes(searchVal.toLowerCase())
       || item.role.toLowerCase().includes(searchVal.toLowerCase())
       || item.department.toLowerCase().includes(searchVal.toLowerCase())
-      || item.mobile.toLowerCase().includes(searchVal.toLowerCase())
       || item.email.toLowerCase().includes(searchVal.toLowerCase());
   })
   : empData;

@@ -1,7 +1,15 @@
 @import '/public/assets/scss/variables';
 
 .profile-wrapper {
-    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.141);
+    box-shadow: $boxShadow;
+    position: relative;
+    max-height: calc(100vh - 100px);
+    overflow: auto;
+    border-radius: 0.25rem;
+
+    &::-webkit-scrollbar{
+        display: none;
+    }
 
     .profile-bg {
         width: 100%;
@@ -17,7 +25,7 @@
             letter-spacing: 2px;
         }
 
-        span{
+        span {
             color: $whitesmoke;
         }
     }
@@ -37,7 +45,7 @@
                 border-radius: 50%;
                 position: absolute;
                 top: -70px;
-                box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.141);
+                box-shadow: $boxShadow;
             }
         }
 
@@ -46,6 +54,7 @@
 
             .social-profile {
                 flex-direction: column;
+
                 a {
                     width: 30px;
                     height: 30px;
@@ -74,23 +83,69 @@
     }
 
     .other-profile-details {
-        .p-card{
+        .p-card {
             padding: 0.2rem;
             display: flex;
             flex-direction: column;
-            padding-left: 30px;
+            padding-left: 12px;
 
-            span{
+            span {
                 font-size: 0.8rem;
                 text-transform: uppercase;
                 font-weight: 400;
                 color: $grey;
             }
 
-            p{
+            p {
                 color: $black;
                 margin-bottom: 0;
                 font-size: 0.9rem;
+            }
+        }
+    }
+
+    .profile-tabs-wrapper {
+        
+        .react-tabs {
+            .react-tabs__tab-list {
+                position: sticky !important;
+        top: 0;
+        background: $white;
+        z-index: 12;
+                display: flex !important;
+                border-bottom: 1px solid $border-color !important;
+                border-top: 1px solid $border-color !important;
+                padding: 0px 1.5rem !important;
+
+                .react-tabs__tab {
+                    margin-bottom: 0rem !important;
+                    border-radius: 0 !important;
+                    padding: 0.7rem;
+                    bottom: auto !important;
+                    min-width: 7rem !important;
+                    display: flex;
+                    justify-content: center;
+                    color: gray;
+                    font-weight: 300;
+                    &:hover{
+                        color: $blue-dark;
+                    }
+                }
+
+                .react-tabs__tab--selected {
+                    background-color: $blue;
+                    border: 0;
+                    position: relative;
+                    color: $white !important;
+                    font-weight: 300 !important;
+                }
+
+            }
+
+            .react-tabs__tab-panel {
+                .tab-content-wrapper {
+                    padding: 1.5rem !important;
+                }
             }
         }
     }

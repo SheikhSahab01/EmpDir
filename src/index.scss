@@ -30,6 +30,52 @@ ul {
 ::-webkit-scrollbar-thumb:hover {
   background: #9aabb3;
 }
+.ems-row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 1rem;
+
+  .ems-block-half{
+    width: 49% !important;
+    background-color: $white;
+    border-radius: 0.25rem;
+    box-shadow: $boxShadow;
+    overflow: hidden;
+  }
+
+  .ems-block {
+    width: 100% !important;
+    background-color: $white;
+    border-radius: 0.25rem;
+    box-shadow: $boxShadow;
+    overflow: hidden;
+  }
+
+  .ems-block-header{
+    padding: 0.8rem;
+    display: flex;
+    border-bottom: 1px solid  $border-color;
+
+    h1,h2,h3,h4,h5,h6{
+      font-size: 1.1rem !important;
+      font-weight: 400;
+      letter-spacing: 1.1px;
+      margin-bottom: 0;
+    }
+
+    .ems-block-header-btn{
+      min-width: 50px !important;
+      padding: 5px 20px !important;
+    }
+  }
+
+  .ems-block-body{
+    padding: 0.8rem;
+    display: flex;
+  }
+}
+
 
 input,
 textarea,
@@ -75,7 +121,6 @@ textarea:focus {
   border: 1.5px solid $blue !important;
   box-shadow: none !important;
   outline: none !important;
-  // box-shadow: 1px 1px 1px 1px $blue;
 }
 
 .form-check-input:checked {
@@ -87,9 +132,17 @@ textarea:focus {
 .btn {
   padding: 0.5rem 1rem !important;
   font-size: 1rem !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
   min-width: 100px !important;
   border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+
+  i{
+    font-size: 0.9rem !important ;
+    font-weight: 400 !important;
+  }
 
   &.btn-primary {
     background-color: $blue !important;
@@ -110,30 +163,43 @@ textarea:focus {
     }
   }
 
+  &.btn-secondary {
+    background-color: $lightskyblue !important;
+    color: $blue-dark;
+
+    &:hover {
+      background-color: $blue-dark !important;
+      color: $white !important;
+    }
+  }
+
 }
 
-.error-text{
+.error-text {
   font-size: 0.8rem !important;
   font-weight: 300 !important;
   color: $danger !important;
 }
 
-.badge{
+.badge {
   min-width: 50px !important;
   font-weight: 500 !important;
   letter-spacing: 1.1px;
   color: $white;
 
-  &.badge-primary{
+  &.badge-primary {
     background-color: $blue !important;
   }
-  &.badge-danger{
+
+  &.badge-danger {
     background-color: $danger;
   }
-  &.badge-success{
+
+  &.badge-success {
     background-color: $success;
   }
-  &.badge-secondary{
+
+  &.badge-secondary {
     background-color: $lightskyblue;
     color: $blue-dark;
   }

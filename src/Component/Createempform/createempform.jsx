@@ -169,7 +169,7 @@ const Createempform = () => {
       </div>
       <div className="w-100 mb-3 ps-4 py-2">
         <input
-          type="text"
+          type="number"
           className="form-control"
           name="id"
           placeholder="Employee Id"

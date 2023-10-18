@@ -7,22 +7,25 @@ import Createempform from "../Createempform/createempform";
 import Profile from "../Profile/Profile";
 import { Routes, Route, Link } from "react-router-dom";
 
-
 const Dashboard = () => {
   // var empData = data.employees;
   const [empData, setEmpData] = useState([]);
-  const loadData = async ()=>{
-    let response = await fetch("http://localhost:5000/api/EmpData",{
-      method:"POST",
-      headers:{
+
+const loadData = async () => {
+  try {
+    const response = await fetch("http://localhost:5000/api/EmpData", {
+      method: "POST",
+      headers: {
         'Content-Type': 'application/json'
       }
     });
 
-    response =await response.json();
-    
-    setEmpData(response[0]);
+    const data = await response.json();
+    setEmpData(data[0]);
+  } catch (error) {
+    console.error(error);
   }
+};
 
   useEffect(()=>{
     loadData()
@@ -58,26 +61,58 @@ const Dashboard = () => {
   })
   : empData;
 
+  const [itemActive, setItemActive] = useState(1);
+
+  const navigators = [
+    {
+      id: 1,
+      name: 'Dashboard',
+      icon: 'fa fa-dashboard',
+      path: '/dashboard/'
+    },
+    {
+      id: 2,
+      name: 'Create Employee',
+      icon: 'fa fa-square-plus',
+      path: '/dashboard/create_employee'
+    },
+    {
+      id: 3,
+      name: 'Profile',
+      icon: 'fa fa-user',
+      path: '/dashboard/profile'
+    },
+    {
+      id: 4,
+      name: 'Employees',
+      icon: 'fa fa-users',
+      path: '/dashboard/employees'
+    }
+  ];
+
   return (
     <>
         <div className="d-flex p-0 w-100">
           <aside className={dashHide}>
             <header className="d-flex align-items-center">
-              <img src="assets/images/logo.svg" />
+              {/* <img src="assets/images/logo.svg"/> */}
+                <div className="logo">EMS</div>
               <div>
                 <i className={`fa-solid fa-${open}`} onClick={handleDashToggle}></i>
               </div>
             </header>
             <nav className="side-navigation">
-                  <li>
-                    <Link to="/dashboard/"><i className="fa fa-dashboard"></i><span>Dashboard</span></Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/create_employee"> <i className="fa fa-ship"></i><span>Create Employee</span></Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard/profile"><i className="fa fa-dashboard"></i><span>Profile</span></Link>
-                  </li>
+              {
+                navigators.map((item,i) =>{
+                  return(
+                    <>
+                       <li className={`${itemActive === item.id ? "active" : ""} mb-2`} onClick={() => setItemActive(item.id)} key={i}>
+                       <Link to={item.path}><i className={item.icon}></i><span>{item.name}</span></Link>
+                       </li>
+                    </>
+                  )
+                })
+              }
             </nav>
           </aside>
           <div className="content-area">
@@ -94,16 +129,21 @@ const Dashboard = () => {
             <div className="tabs-content-wrapper overflow-hidden">
                 <Routes>
                   <Route path="/" element={
-                      <div className="row">
-                        {searchResults.map((item, i) => (
-                          <div className="col-lg-4 p-0 d-flex justify-content-center" key={i}>
-                            <Card empsdata={item} />
-                          </div>
-                        ))}
-                      </div>
+                    <>
+                     <h1>Dashboard</h1>
+                    </>    
                   }/>
                   <Route path="/create_employee" element={<Createempform />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/employees" element={
+                      <div className="row">
+                      {searchResults.map((item, i) => (
+                        <div className="col-lg-4 p-0 d-flex justify-content-center" key={i}>
+                          <Card empsdata={item} />
+                        </div>
+                      ))}
+                    </div>
+                  } />
                 </Routes>
               </div>  
             </main>

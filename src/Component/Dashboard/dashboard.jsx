@@ -6,6 +6,7 @@ import Card from "../Cards/Card"
 import Createempform from "../Createempform/createempform";
 import Profile from "../Profile/Profile";
 import { Routes, Route, Link } from "react-router-dom";
+import navigators from '../../Data/navigators.json';
 
 const Dashboard = () => {
   // var empData = data.employees;
@@ -62,33 +63,6 @@ const loadData = async () => {
   : empData;
 
   const [itemActive, setItemActive] = useState(1);
-
-  const navigators = [
-    {
-      id: 1,
-      name: 'Dashboard',
-      icon: 'fa fa-dashboard',
-      path: '/dashboard/'
-    },
-    {
-      id: 2,
-      name: 'Create Employee',
-      icon: 'fa fa-square-plus',
-      path: '/dashboard/create_employee'
-    },
-    {
-      id: 3,
-      name: 'Profile',
-      icon: 'fa fa-user',
-      path: '/dashboard/profile'
-    },
-    {
-      id: 4,
-      name: 'Employees',
-      icon: 'fa fa-users',
-      path: '/dashboard/employees'
-    }
-  ];
 
   return (
     <>

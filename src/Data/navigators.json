@@ -1,0 +1,25 @@
+[{
+    "id": 1,
+    "name": "Dashboard",
+    "icon": "fa fa-dashboard",
+    "path": "/dashboard/"
+  },
+  {
+    "id": 2,
+    "name": "Create Employee",
+    "icon": "fa fa-square-plus",
+    "path": "/dashboard/create_employee"
+  },
+  {
+    "id": 3,
+    "name": "Profile",
+    "icon": "fa fa-user",
+    "path": "/dashboard/profile"
+  },
+  {
+    "id": 4,
+    "name": "Employees",
+    "icon": "fa fa-users",
+    "path": "/dashboard/employees"
+  }
+]  

@@ -1,0 +1,15 @@
+[{
+        "leavestype": "flexi",
+        "remainingleave": "5",
+        "color": "green"
+    },
+    {
+        "leavestype": "sick",
+        "remainingleave": "18",
+        "color": "lightgreen"
+    },
+    {
+        "leavestype": "unpaid",
+        "remainingleave": "99",
+        "color": "red"
+    }]

@@ -4,6 +4,7 @@ import "./dashboard.scss";
 import Card from "../Cards/Card"
 // import data from '../../Backend/Data';
 import Createempform from "../Createempform/createempform";
+import Gridlayout from "../Gridlayout/gridlayout";
 import Profile from "../Profile/Profile";
 import { Routes, Route, Link } from "react-router-dom";
 import navigators from '../../Data/navigators.json';
@@ -102,11 +103,7 @@ const loadData = async () => {
             <main>
             <div className="tabs-content-wrapper overflow-hidden">
                 <Routes>
-                  <Route path="/" element={
-                    <>
-                     <h1>Dashboard</h1>
-                    </>    
-                  }/>
+                  <Route path="/" element={<Gridlayout />}/>
                   <Route path="/create_employee" element={<Createempform />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/employees" element={

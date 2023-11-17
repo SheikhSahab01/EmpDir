@@ -1,17 +1,20 @@
 import React, { useState,useEffect } from "react";
 // import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { useNavigate } from "react-router-dom";
 import "./dashboard.scss";
 import Card from "../Cards/Card"
 // import data from '../../Backend/Data';
 import Createempform from "../Createempform/createempform";
-import Gridlayout from "../Gridlayout/gridlayout";
 import Profile from "../Profile/Profile";
 import { Routes, Route, Link } from "react-router-dom";
 import navigators from '../../Data/navigators.json';
 
 const Dashboard = () => {
   // var empData = data.employees;
+  let navigate = useNavigate();
   const [empData, setEmpData] = useState([]);
+  const [UserData, setUserData] = useState([]);
+
 
 const loadData = async () => {
   try {
@@ -29,8 +32,33 @@ const loadData = async () => {
   }
 };
 
+  const getUserData = async ()=>{
+    try{
+      const response = await fetch("http://localhost:5000/api/getuser",{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({emp_id: localStorage.getItem('UserId')})
+      });
+
+      const resUserData = await response.json();
+      setUserData(resUserData);
+      console.log(UserData)
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
   useEffect(()=>{
-    loadData()
+    if(localStorage.getItem('token') && localStorage.getItem('UserId')){
+      loadData()
+      getUserData()
+    }
+    else{
+      navigate("/")
+    }
   },[]);
 
   const [dashShow, SetdashShow] = useState(false);
@@ -95,17 +123,26 @@ const loadData = async () => {
               <div className="search-bar d-flex justify-content-between">
                 <input type="search" name="" id="" placeholder="Search Employee Name, Role, Department, Email, Mobile" value={searchVal} onChange={handlesearchvalue}/>
                 <div className="user-details d-flex align-items-center">
-                  <img src="https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/9f91e30721604c0f818e2af4530b7cf7.jpg?1692777600000" alt="" className="user-img"/>
-                  <span className="user-name ms-3">Arjit Raturi</span>
+                  <img src={UserData.img} className="user-img"/>
+                  <div className="name-option-wrapper position-relative">
+                    <span className="user-name ms-3">{UserData.name}</span>
+                    <div className="options">
+                      <Link to="../logout" className="option">Logout</Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </nav>
             <main>
             <div className="tabs-content-wrapper overflow-hidden">
                 <Routes>
-                  <Route path="/" element={<Gridlayout />}/>
+                  <Route path="/" element={
+                    <>
+                     <h1>Dashboard</h1>
+                    </>    
+                  }/>
                   <Route path="/create_employee" element={<Createempform />} />
-                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/profile" element={<Profile UserData={UserData}/>} />
                   <Route path="/employees" element={
                       <div className="row">
                       {searchResults.map((item, i) => (

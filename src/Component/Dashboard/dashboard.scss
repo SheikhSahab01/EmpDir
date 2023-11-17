@@ -200,8 +200,39 @@ aside {
                     outline: 1.5px solid $white;
                     outline-offset: 3px;
                 }
-                .user-name{
-                    color: $white;
+
+                .name-option-wrapper{
+                    &:hover{
+                        .options{
+                            opacity: 1;
+                        }
+                    }
+
+                    .user-name{
+                        color: $white;
+                    }
+
+                    .options{
+                        position: absolute;
+                        left: 16px;
+                        bottom: -50px;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: $white;
+                        width: 100%;
+                        opacity: 0;
+
+                        .option{
+                            text-decoration: none;
+                            padding: 10px 15px;
+                            color: $blue;
+                            font-weight: 500;
+                            
+                            &:hover{
+                                background-color: $lightskyblue;
+                            }
+                        }
+                    }
                 }
             }
         }

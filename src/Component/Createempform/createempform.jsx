@@ -30,6 +30,7 @@ const Createempform = () => {
           location: formData.location,
           mobile: formData.mobno,
           img: formData.img,
+          password: `${formData.mobno.slice(0,5)}${formData.fname}`
       })
      });
      console.log(response)

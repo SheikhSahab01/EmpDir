@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import "./profile.scss"
 
-const Profile = () => {
+const Profile = (Props) => {
   return (
     <>
         <div className="profile-wrapper">
@@ -13,14 +13,14 @@ const Profile = () => {
             </div>
             <div className="profile px-4 py-2">
               <div className="profile-img">
-                <img className='img-fluid' src="https://simplify.keka.com/files/6565bb03-dd21-4f5a-b023-a91042229dda/200x200/profileimage/9f91e30721604c0f818e2af4530b7cf7.jpg?1692777600000" alt="" />
+                <img className='img-fluid' src={Props.UserData.img} alt="" />
               </div>
               <div className="profile-detail ps-4">
                   <div className="p-row d-flex align-items-start justify-content-between">
                     <div className='d-flex align-items-start gap-3'>
                       <div>
-                        <h3 className='mb-0'>Arjit Raturi</h3>
-                        <span className='d-block'>Associate Ui Developer</span>
+                        <h4 className='mb-0'>{Props.UserData.name}</h4>
+                        <span className='d-block'>{Props.UserData.role}</span>
                       </div>
                       <div className="d-flex gap-2 h-100 p-2">
                         <span class="badge badge-danger">Leave</span>
@@ -30,7 +30,7 @@ const Profile = () => {
                       </div>
                     </div>
                     <div className="social-profile d-flex gap-3 p-2">
-                        <small>arjitraturi7s@gmail.com</small>
+                        <small>{Props.UserData.email}</small>
                         <div className='d-flex gap-2 align-items-center justify-content-end'>
                         <a href=""><i className='fa-brands fa-linkedin'></i></a>
                         <a href=""><i className='fa-brands fa-github'></i></a>
@@ -44,11 +44,11 @@ const Profile = () => {
               <div className="row gy-3">
                 <div className="col-lg-3 p-card">
                   <span>Job Title</span>
-                  <p>Associate Ui Developer</p>
+                  <p>{Props.UserData.role}</p>
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>department</span>
-                  <p>User Experience</p>
+                  <p>{Props.UserData.department}</p>
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>REPORTING TO</span>
@@ -56,15 +56,15 @@ const Profile = () => {
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>EMP NO</span>
-                  <p>EMS-0051</p>
+                  <p>{`EMS-${Props.UserData.emp_id}`}</p>
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>Mobile No</span>
-                  <p>+91 99999-99999</p>
+                  <p>{Props.UserData.mobile}</p>
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>Location</span>
-                  <p>Yamunanagar</p>
+                  <p>{Props.UserData.location}</p>
                 </div>
               </div>
             </div>

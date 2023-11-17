@@ -4,7 +4,7 @@ const {Schema} = mongoose;
 const EmpSchema = new Schema({
 
     emp_id:{
-       type:Number,
+       type:String,
        required:true
     },
     name:{
@@ -27,10 +27,6 @@ const EmpSchema = new Schema({
         type:String,
         required:true
     },
-    // password:{
-    //     type:String,
-    //     required:true
-    // },
     mobile:{
         type:Number,
         required:true
@@ -38,6 +34,10 @@ const EmpSchema = new Schema({
     img:{
         type:String,
         required:true
+    },
+    password:{
+        type:String,
+        required: true
     }
 
 });

@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Emp = require("../models/Employee");
+var jwt = require('jsonwebtoken');
+const jwtSecret = "emp123"
 
 router.post(
   "/createemp",
@@ -15,6 +17,7 @@ router.post(
         location: req.body.location,
         mobile: req.body.mobile,
         img: req.body.img,
+        password: req.body.password,
       });
       res.json({ success: true });
     } catch (error) {
@@ -24,42 +27,49 @@ router.post(
   }
 );
 
-// router.post(
-//   "/loginuser",
-//   [body("email").isEmail(), body("password").isLength({ min: 5 })],
-//   async (req, res) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(400).json({ errors: errors.array() });
-//     }
+router.post(
+  "/loginuser",
+  async (req, res) => {
+    let email = req.body.email;
+    try {
+      let empData = await Emp.findOne({ email });
+      if (!empData) {
+        return res
+          .status(400)
+          .json({ errors: "Try logging in with correct credentials" });
+      }
+      // const pwdCompare = bcrypt.compare(req.body.password,empData.password);
+      const pwd = req.body.password;
+      if (!(pwd === empData.password)) {
+        return res
+          .status(400)
+          .json({ errors: "Try logging in with correct credentils" });
+      }
 
-//     let email = req.body.email;
-//     try {
-//       let userData = await User.findOne({ email });
-//       if (!userData) {
-//         return res
-//           .status(400)
-//           .json({ errors: "Try logging in with correct credentils" });
-//       }
-//       const pwdCompare = bcrypt.compare(req.body.password,userData.password);
-//       if (!pwdCompare) {
-//         return res
-//           .status(400)
-//           .json({ errors: "Try logging in with correct credentils" });
-//       }
+      const data={
+           user:{
+            id:empData.emp_id
+           }
+      }
+      const authToken = jwt.sign(data,jwtSecret);
+      return res.json({ success: true,authToken:authToken,UserId: data.user.id});
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false });
+    }
+  }
+);
 
-//       const data={
-//            user:{
-//             id:userData.id
-//            }
-//       }
-//       const authToken = jwt.sign(data,jwtSecret);
-//       return res.json({ success: true,authToken:authToken });
-//     } catch (error) {
-//       console.log(error);
-//       res.json({ success: false });
-//     }
-//   }
-// );
+router.post("/getuser",
+   async(req,res)=>{
+    try{
+      let emp_id = req.body.emp_id;
+      const user = await Emp.findOne({emp_id}).select("-password");
+      res.send(user)
+    }
+    catch(error){
+      res.send(error.message);
+    }
+})
 
 module.exports = router;

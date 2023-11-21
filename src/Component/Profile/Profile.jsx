@@ -1,9 +1,44 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import "./profile.scss"
 
 const Profile = (Props) => {
+  const {userId} = useParams();
+  
+  let navigate = useNavigate();
+
+  const [userData, setUserData] = useState([]);
+
+  const getUserData = async ()=>{
+    try{
+      const response = await fetch("http://localhost:5000/api/getuser",{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({emp_id: Props.UserId ? Props.UserId : userId})
+      });
+
+      const resUserData = await response.json();
+      setUserData(resUserData);
+      // console.log(UserData)
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
+  useEffect(()=>{
+    if(localStorage.getItem('token') && localStorage.getItem('UserId')){
+      getUserData()
+    }
+    else{
+      navigate("/")
+    }
+  },[]);
+
   return (
     <>
         <div className="profile-wrapper">
@@ -13,14 +48,14 @@ const Profile = (Props) => {
             </div>
             <div className="profile px-4 py-2">
               <div className="profile-img">
-                <img className='img-fluid' src={Props.UserData.img} alt="" />
+                <img className='img-fluid' src={userData.img} alt="" />
               </div>
               <div className="profile-detail ps-4">
                   <div className="p-row d-flex align-items-start justify-content-between">
                     <div className='d-flex align-items-start gap-3'>
                       <div>
-                        <h4 className='mb-0'>{Props.UserData.name}</h4>
-                        <span className='d-block'>{Props.UserData.role}</span>
+                        <h4 className='mb-0'>{userData.name}</h4>
+                        <span className='d-block'>{userData.role}</span>
                       </div>
                       <div className="d-flex gap-2 h-100 p-2">
                         <span class="badge badge-danger">Leave</span>
@@ -30,7 +65,7 @@ const Profile = (Props) => {
                       </div>
                     </div>
                     <div className="social-profile d-flex gap-3 p-2">
-                        <small>{Props.UserData.email}</small>
+                        <small>{userData.email}</small>
                         <div className='d-flex gap-2 align-items-center justify-content-end'>
                         <a href=""><i className='fa-brands fa-linkedin'></i></a>
                         <a href=""><i className='fa-brands fa-github'></i></a>
@@ -44,11 +79,11 @@ const Profile = (Props) => {
               <div className="row gy-3">
                 <div className="col-lg-3 p-card">
                   <span>Job Title</span>
-                  <p>{Props.UserData.role}</p>
+                  <p>{userData.role}</p>
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>department</span>
-                  <p>{Props.UserData.department}</p>
+                  <p>{userData.department}</p>
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>REPORTING TO</span>
@@ -56,15 +91,15 @@ const Profile = (Props) => {
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>EMP NO</span>
-                  <p>{`EMS-${Props.UserData.emp_id}`}</p>
+                  <p>{`EMS-${userData.emp_id}`}</p>
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>Mobile No</span>
-                  <p>{Props.UserData.mobile}</p>
+                  <p>{userData.mobile}</p>
                 </div>
                 <div className="col-lg-3 p-card">
                   <span>Location</span>
-                  <p>{Props.UserData.location}</p>
+                  <p>{userData.location}</p>
                 </div>
               </div>
             </div>

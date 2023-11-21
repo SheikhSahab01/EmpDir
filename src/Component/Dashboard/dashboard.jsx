@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 // import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import "./dashboard.scss";
 import Card from "../Cards/Card"
 // import data from '../../Backend/Data';
@@ -11,10 +11,12 @@ import navigators from '../../Data/navigators.json';
 
 const Dashboard = () => {
   // var empData = data.employees;
+  const currentUser = localStorage.getItem('UserId');
   let navigate = useNavigate();
   const [empData, setEmpData] = useState([]);
   const [UserData, setUserData] = useState([]);
 
+// load all employees on page render  
 
 const loadData = async () => {
   try {
@@ -32,6 +34,7 @@ const loadData = async () => {
   }
 };
 
+// fetch logged user data
   const getUserData = async ()=>{
     try{
       const response = await fetch("http://localhost:5000/api/getuser",{
@@ -44,17 +47,17 @@ const loadData = async () => {
 
       const resUserData = await response.json();
       setUserData(resUserData);
-      console.log(UserData)
+      // console.log(UserData)
     }
     catch(error){
       console.log(error);
     }
   }
-
+  
   useEffect(()=>{
     if(localStorage.getItem('token') && localStorage.getItem('UserId')){
-      loadData()
-      getUserData()
+      loadData();
+      getUserData();
     }
     else{
       navigate("/")
@@ -77,6 +80,11 @@ const loadData = async () => {
       Setopen("xmark");
     }
   };
+
+  const handleSearchFocus = ()=>{
+    setItemActive(4);
+    navigate('employees')
+  }
 
   const handlesearchvalue = (e)=>{
     SetsearchVal(e.target.value);
@@ -121,7 +129,7 @@ const loadData = async () => {
           <div className="content-area">
             <nav className="dash-navbar">
               <div className="search-bar d-flex justify-content-between">
-                <input type="search" name="" id="" placeholder="Search Employee Name, Role, Department, Email, Mobile" value={searchVal} onChange={handlesearchvalue}/>
+                <input type="search" name="" id="" placeholder="Search Employee Name, Role, Department, Email, Mobile" value={searchVal} onChange={handlesearchvalue} onClick={handleSearchFocus}/>
                 <div className="user-details d-flex align-items-center">
                   <img src={UserData.img} className="user-img"/>
                   <div className="name-option-wrapper position-relative">
@@ -142,16 +150,29 @@ const loadData = async () => {
                     </>    
                   }/>
                   <Route path="/create_employee" element={<Createempform />} />
-                  <Route path="/profile" element={<Profile UserData={UserData}/>} />
+                  <Route path="/profile" element={<Profile UserId={currentUser}/>} />
                   <Route path="/employees" element={
-                      <div className="row">
-                      {searchResults.map((item, i) => (
-                        <div className="col-lg-4 p-0 d-flex justify-content-center" key={i}>
-                          <Card empsdata={item} />
-                        </div>
-                      ))}
-                    </div>
-                  } />
+                    <>
+                      {
+                        !window.location.href.includes('/employees/profile')
+                        ?
+                        <div className="row">
+                        {searchResults.map((item, i) => (
+                          <div className="col-lg-4 p-0 d-flex justify-content-center" key={i}>
+                            <Link to={"profile/" + item.emp_id} className="card-link">
+                            <Card empsdata={item} />
+                            </Link>
+                          </div>
+                        ))}
+                      </div>
+                      :
+                      null
+                      }
+                    <Outlet />
+                    </>
+                  }> 
+                  <Route path="profile/:userId" element={<Profile />}/>
+                  </Route>
                 </Routes>
               </div>  
             </main>

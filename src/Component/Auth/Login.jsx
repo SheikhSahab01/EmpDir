@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import "./login.scss";
 
@@ -6,9 +6,15 @@ const Login = () => {
   let navigate = useNavigate();
   const [credentials,setCredentials] = useState({email: "",password: ""});
 
+  const getUserId = (token)=> {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    var data = JSON.parse(window.atob(base64));
+    return data.user.id;
+  }
+
   const handleSubmit = async(e)=>{
       e.preventDefault();
-      console.log("Submit");
       const response  = await fetch("http://localhost:5000/api/loginuser",{
        method: 'POST',
        headers: {
@@ -17,19 +23,24 @@ const Login = () => {
        body: JSON.stringify({email: credentials.email, password: credentials.password})
       });
       const json = await response.json()
-      console.log(json);
 
       if(json.success){
         localStorage.setItem('userEmail', credentials.email)
         localStorage.setItem('token', json.authToken)
-        localStorage.setItem('UserId',json.UserId)
-        console.log(localStorage.getItem('UserId'))
+        localStorage.setItem('UserId',getUserId(json.authToken));
+        // console.log(localStorage.getItem('UserId'))
         navigate("/dashboard");
       }
       else{
         alert("Enter Valid Credentials")
       }
   }
+
+  useEffect(()=>{
+    if(localStorage.getItem('token') && localStorage.getItem('UserId')){
+      navigate("dashboard");
+    }
+  },[]);
 
   const onChange = (e)=>{
     setCredentials({...credentials, [e.target.name]:e.target.value})

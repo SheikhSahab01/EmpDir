@@ -46,9 +46,19 @@ const Login = () => {
     setCredentials({...credentials, [e.target.name]:e.target.value})
   }
   return (
-    <div className="container">
-    <div className="row justify-content-center mt-5">
-      <div className="col-lg-4 col-md-6 col-sm-6">
+    <div className="login-wrapper">
+    <div className="row justify-content-center m-0 p-0 h-100">
+      <div className='col-md-6 p-0 m-0 h-100 d-none d-md-block'>
+        <div className="left-wrapper">
+             <div className="product-info">
+                <i class="fa-solid fa-users"></i>
+                <h1>Employee Management System</h1>
+                <p>Workplace Management Made Simple</p>
+             </div>
+        </div>
+      </div>
+      <div className="col-md-6 p-0 m-0">
+        <div className="card-wrapper p-5">
         <div className="card shadow rounded">
           <div className="card-title text-center border-bottom">
             <h2 className="p-3">Login</h2>
@@ -72,6 +82,7 @@ const Login = () => {
               </div>
             </form>
           </div>
+        </div>
         </div>
       </div>
     </div>

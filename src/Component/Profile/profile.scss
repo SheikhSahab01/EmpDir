@@ -145,6 +145,11 @@
             .react-tabs__tab-panel {
                 .tab-content-wrapper {
                     padding: 1.5rem !important;
+
+                    .edit-mode-btn{
+                        min-width: 90px !important;
+                        width: 90px;
+                    }
                 }
             }
         }

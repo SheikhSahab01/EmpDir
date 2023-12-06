@@ -10,6 +10,7 @@ const Profile = (Props) => {
   let navigate = useNavigate();
 
   const [userData, setUserData] = useState([]);
+  const [editMode, setEditMode] = useState(false);
 
   const getUserData = async ()=>{
     try{
@@ -28,6 +29,14 @@ const Profile = (Props) => {
     catch(error){
       console.log(error);
     }
+  }
+
+  const handleEdit = ()=>{
+    setEditMode(true)
+  }
+
+  const handleSave = ()=>{
+    setEditMode(false)
   }
 
   useEffect(()=>{
@@ -149,22 +158,37 @@ const Profile = (Props) => {
               </TabPanel>
               <TabPanel>
                 <div className="tab-content-wrapper">
-                  <div className="ems-row">
-
+                <div className='d-flex justify-content-end'>
+                <div className={!editMode ? "btn btn-secondary edit-mode-btn" : "d-none"} onClick={handleEdit}><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                <div className={editMode ? "btn btn-success edit-mode-btn" : "d-none"} onClick={handleSave}><i class="fa-regular fa-square-check"></i>Save</div>
+                </div>
+                  <div className="ems-row mt-3">
                     <div className="ems-block-half">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Primary Details</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
                       </div>
                       <div className="ems-block-body">
-                        <p>Primary Details Content</p>
+                        <div className={!editMode ? "d-block" : "d-none"}>
+                          <p>Name: <strong>{userData.name}</strong></p>
+                          <p>Date Of Birth: <strong>12-8-2023</strong></p>
+                          <p>Gender: <strong>Male</strong></p>
+                          <p>Maritial Status: <strong>Single</strong></p>
+                          <p>Blood Group: <strong>O+</strong></p>
+                        </div>
+                        <div className={editMode ? "d-block" : "d-none"}>
+                          <p>Name: <input type="text" value={userData.name}/></p>
+                          <p>Date Of Birth: <input type="text" value="12-8-2023"/></p>
+                          <p>Gender: <input type="text" value="Male"/></p>
+                          <p>Maritial Status: <input type="text" value="Single"/></p>
+                          <p>Blood Group: <input type="text" value="O+"/></p>
+                        </div>
                       </div>
                     </div>
 
                     <div className="ems-block-half">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Contact Details</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                        
                       </div>
                       <div className="ems-block-body">
                         <p>Contact Details Content</p>
@@ -174,7 +198,7 @@ const Profile = (Props) => {
                     <div className="ems-block-half">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Addresses</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                        
                       </div>
                       <div className="ems-block-body">
                         <p>Addresses Content</p>
@@ -184,7 +208,7 @@ const Profile = (Props) => {
                     <div className="ems-block-half">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Relations</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                        
                       </div>
                       <div className="ems-block-body">
                         <p>Relations Content</p>
@@ -194,7 +218,7 @@ const Profile = (Props) => {
                     <div className="ems-block-half">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Experience</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                        
                       </div>
                       <div className="ems-block-body">
                         <p>Experience Content</p>
@@ -204,7 +228,7 @@ const Profile = (Props) => {
                     <div className="ems-block-half">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Education</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                        
                       </div>
                       <div className="ems-block-body">
                         <p>Education Content</p>
@@ -214,7 +238,7 @@ const Profile = (Props) => {
                     <div className="ems-block">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Professional Summary</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                        
                       </div>
                       <div className="ems-block-body">
                         <p>Professional Summary Content</p>
@@ -230,7 +254,7 @@ const Profile = (Props) => {
                     <div className="ems-block">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Job Details</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                        
                       </div>
                       <div className="ems-block-body">
                         <p>Job Details Content</p>
@@ -240,7 +264,7 @@ const Profile = (Props) => {
                     <div className="ems-block">
                       <div className="ems-block-header justify-content-between align-items-center">
                         <h1>Employee Time</h1>
-                        <div className='btn btn-secondary ems-block-header-btn'><i class="fa-regular fa-pen-to-square"></i>Edit</div>
+                        
                       </div>
                       <div className="ems-block-body">
                         <p>Employee Time Content</p>

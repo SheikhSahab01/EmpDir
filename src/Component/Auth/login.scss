@@ -1,5 +1,41 @@
 @import '/public/assets/scss/variables';
 
+.login-wrapper{
+    height: 100vh;
+
+    .left-wrapper{
+        height: 100%;
+        width: 100%;
+        background: $blue-dark;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .product-info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            i{
+                font-size: 70px;
+            }
+
+            h1{
+                font-weight: 800;
+                text-align: center;
+                margin: 20px 0px;
+                font-size: 46px;
+            }
+
+            p{
+                font-weight: 300;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
 .login-btn{
     background-color: $blue;
     color: $white;
